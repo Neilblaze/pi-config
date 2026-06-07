@@ -14,6 +14,8 @@ Personal [pi](https://github.com/badlogic/pi) configuration — extensions, skil
    ```bash
    cd ~/.pi/agent/extensions/bash-guard   && npm install
    cd ~/.pi/agent/extensions/filechanges  && npm install
+   cd ~/.pi/agent/extensions/pi-hashline  && npm install
+   cd ~/.pi/agent/extensions/todo         && npm install
    cd ~/.pi/agent/extensions/web-fetch    && npm install
    ```
 4. (Optional) Copy `.env.example` to `.env` and fill in API keys:
@@ -66,6 +68,7 @@ Avoid cloning this repo directly into `~/.pi/agent` unless it is a fresh setup. 
 |-----------|------|-------------|
 | `ask-user-question.ts` | Tool | Interactive question UI with single/multi-select and free-text |
 | `bash-guard/` | Hook | Safety guardrails for bash commands |
+| `budget-guard/` | Hook | Counter that hard-caps subagent tool calls (max 100) to prevent runaway processes |
 | `context.ts` | Command | Visualize context window usage as a colored grid (`/context`) |
 | `copy-all.ts` | Command | Copy all messages to clipboard (`/copy-all`) |
 | `custom-header.ts` | UI | Static ASCII art session header |
@@ -77,7 +80,11 @@ Avoid cloning this repo directly into `~/.pi/agent` unless it is a fresh setup. 
 | `md-link.ts` | Command | Link a markdown file for collaborative editing (`/link-md`) |
 | `memory.ts` | Command | Persistent project memory via `MEMORY.md` (`/memory`) |
 | `opencode-zen-login.ts` | Provider | OpenCode Zen API key provider registration |
+| `pi-hashline/` | Tool/Hook | Collision-free edits/reads verification using xxHash32 anchored lines |
+| `rtk-wrap/` | Hook | Command optimizer wrapping terminal calls via `rtk` binary and truncating outputs |
+| `safety/` | Hook | Regex pattern blocker to stop dangerous bash execution calls |
 | `subagents/` | Tool | Spawn sub-agents (auditor, researcher, scout, worker) |
+| `todo/` | Tool/Command | Persistent tasks tracking and subagents dispatch checklist (`/todos` / `todo`) |
 | `tps-tracker.ts` | UI | Live tokens-per-second display during generation |
 | `usage.ts` | Command | Usage & cost report for last 1/7/30/90 days (`/usage`) |
 | `video-extract/` | Tool | Extract content from videos |
@@ -88,7 +95,31 @@ Avoid cloning this repo directly into `~/.pi/agent` unless it is a fresh setup. 
 | `zsh-user-bash.ts` | Hook | Run pi bash commands through user's zsh |
 | `zz-read-only-mode.ts` | Command | Hard-enforced read-only mode (`/read-only`) |
 
-> **Note:** `custom-header.ts` and `flow-title.ts` both set the session header. Use one or the other — `custom-header.ts` loads first alphabetically, and `flow-title.ts` replaces it on `session_start`. To use only one, delete or rename the other.
+<br/>
+
+> [!NOTE] 
+> `custom-header.ts` and `flow-title.ts` both set the session header. Use one or the other — `custom-header.ts` loads first alphabetically, and `flow-title.ts` replaces it on `session_start`. To use only one, delete or rename the other.
+
+### Agents
+
+Role definitions for specialized subagents stored in the `agents/` folder:
+
+| Agent | Description |
+|-------|-------------|
+| `architect.md` | Formulates design plans and structural definitions |
+| `backend-developer.md` | Handles server, database, API, and backend integrations |
+| `code-researcher.md` | Audits, searches, and details files inside the codebase |
+| `frontend-developer.md` | Handles UI/UX, markup, stylesheet designs, and client-side logic |
+| `infrastructure-developer.md` | Handles Docker, Kubernetes, CI/CD, and cloud infrastructure tasks |
+| `internal-documentation.md` | Documents developer instructions, code structure, and schemas |
+| `orchestrator.md` | Decomposes complex tasks and delegates them to specialized child agents |
+| `planner.md` | Reviews specifications and brainstorms requirements prior to coding |
+| `refactor.md` | Handles codebase refactoring, optimization, and code cleanliness |
+| `reviewer.md` | Audits pull requests and code changes for style consistency and bugs |
+| `security.md` | Analyzes vulnerability issues, secrets exposure, and dependency bugs |
+| `tester.md` | Creates unit, integration, and end-to-end automated test suites |
+| `user-documentation.md` | Generates user guides, feature documentation, and APIs reference guides |
+| `web-researcher.md` | Crawls documentation, searches online resources, and harvests package guides |
 
 ### Skills
 
@@ -117,6 +148,8 @@ Root `package.json` provides shared dependencies used by single-file extensions.
 Extensions with local npm deps:
 - `bash-guard/`
 - `filechanges/`
+- `pi-hashline/`
+- `todo/`
 - `web-fetch/`
 
 Optional system tools:
