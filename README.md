@@ -129,6 +129,7 @@ Role definitions for specialized subagents stored in the `agents/` folder:
 | `orchestrator/` | Multi-step task orchestration patterns |
 | `paper-reading/` | Deep, structured analysis and critique of academic papers |
 | `pdf-reader/` | PDF text extraction, search, and rendering (requires Python venv) |
+| `poke-humanizer/` | Chat/texting voice — mirrors the user's tone, strips assistant-speak |
 | `productivity/grilling/` | Stress-tests plans and decisions through relentless, interactive questioning |
 | `reddit/` | Reddit content fetching |
 | `stop-slop/` | Reduce verbose/filler language in responses |
