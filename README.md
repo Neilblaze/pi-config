@@ -133,6 +133,7 @@ Role definitions for specialized subagents stored in the `agents/` folder:
 | `productivity/grilling/` | Stress-tests plans and decisions through relentless, interactive questioning |
 | `reddit/` | Reddit content fetching |
 | `stop-slop/` | Reduce verbose/filler language in responses |
+| `ts-rules/` | TypeScript best practices — 63 rules across 19 categories (any safety, narrowing, type design, generics, async, config, TS 7 migration) |
 
 ### Themes
 
